@@ -1,31 +1,74 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 void main() {
-  runApp(
-    const MaterialApp(
-      home: WebViewApp(),
-    ),
-  );
+  runApp(const MyApp());
 }
 
-class WebViewApp extends StatefulWidget {
-  const WebViewApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
-  @override
-  State<WebViewApp> createState() => _WebViewAppState();
-}
 
-class _WebViewAppState extends State<WebViewApp> {
   @override
   Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+   
+       
+        primarySwatch: Colors.red,
+ 
+      ),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+
+
+
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+  
+      _counter++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    
+   
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Flutter WebView'),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(5),
+      child: AppBar(
+        backgroundColor: Colors.deepOrangeAccent,
+        
       ),
-      body: const WebView(
-        initialUrl: 'https://flutter.dev',
       ),
+      body: WebView(
+        onWebViewCreated: (ControllerCallback){
+          
+        },
+        javascriptMode: JavascriptMode.unrestricted,
+        initialUrl: 'https://imaginar.online/test',
+      ),
+      
+     // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
